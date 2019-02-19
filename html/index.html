@@ -29,8 +29,16 @@ map.addOverlay(marker);                     // 将标注添加到地图中
 
 fetch('http://101.132.38.194:8080/queryCurrentLocation')
 .then(function (response){
-        var result = response.json
-        console.log(result)
+        response.json().then(function(json){
+            if(json.Success){
+                json.Data.forEach(userLocation => {
+                    console.log(userLocation.UserId,userLocation.UserName,userLocation.NickName,userLocation.Radius,userLocation.Direction,userLocation.Latitude,userLocation.Longitude)
+                });
+            }else{
+                alert(json.Msg)
+            }
+
+        })
 })
 </script>  
 </body>  
