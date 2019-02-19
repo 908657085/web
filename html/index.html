@@ -27,7 +27,11 @@ map.centerAndZoom(point, 15);
 var marker = new BMap.Marker(point);        // 创建标注    
 map.addOverlay(marker);                     // 将标注添加到地图中 
 
-
+fetch('http://101.132.38.194:8080/queryCurrentLocation')
+.then(function (response){
+        var result = response.json
+        console.log(result)
+})
 </script>  
 </body>  
 </html>
