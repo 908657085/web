@@ -33,6 +33,9 @@ fetch('http://101.132.38.194:8080/queryCurrentLocation')
             if(json.Success){
                 json.Data.forEach(userLocation => {
                     console.log(userLocation.UserId,userLocation.UserName,userLocation.NickName,userLocation.Radius,userLocation.Direction,userLocation.Latitude,userLocation.Longitude)
+                    point = new BMap.Point(userLocation.Latitude,userLocation.Latitude);
+                    marker = new BMap.Marker(point);        // 创建标注    
+                    map.addOverlay(marker);                     // 将标注添加到地图中 
                 });
             }else{
                 alert(json.Msg)
