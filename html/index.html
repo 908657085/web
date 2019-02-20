@@ -33,7 +33,8 @@ map.addControl(new BMap.MapTypeControl());
 
 // 编写自定义函数,创建标注
 function addMarker(userLocation){
-	  let marker = new BMap.Marker(new BMap.Point(userLocation.Longitude,userLocation.Latitude));
+    point=new BMap.Point(userLocation.Longitude,userLocation.Latitude)
+	  var marker = new BMap.Marker(point);
 marker.addEventListener("click", function(){    
     alert("用户信息:" + userLocation.NickName + " 电话:" + userLocation.Tel + " 经度:" + userLocation.Longitude + " 纬度:" + userLocation.Latitude);    
 });  
@@ -52,6 +53,8 @@ fetch('http://101.132.38.194:8080/queryCurrentLocation')
                 alert(json.Msg)
             }
         })
+}).then(function(){
+    map.centerAndZoom(point,15)
 })
 </script>  
 </body>  
