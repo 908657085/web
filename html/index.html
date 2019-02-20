@@ -22,7 +22,7 @@ var map = new BMap.Map("container");
 // 创建地图实例  
 var point = new BMap.Point(113.151977,23.123388);
 // 创建点坐标  
-map.centerAndZoom(point, 10);
+map.centerAndZoom(point, 15);
 map.enableScrollWheelZoom(true); 
 // // 初始化地图，设置中心点坐标和地图级别  
 map.addControl(new BMap.NavigationControl());    
@@ -36,7 +36,7 @@ function addMarker(userLocation){
     point=new BMap.Point(userLocation.Longitude,userLocation.Latitude)
 	  var marker = new BMap.Marker(point);
 marker.addEventListener("click", function(){    
-    alert("用户信息:" + userLocation.NickName + " 电话:" + userLocation.Tel + " 经度:" + userLocation.Longitude + " 纬度:" + userLocation.Latitude);    
+    alert("用户信息:" + userLocation.NickName + " 电话:" + userLocation.Tel + " 经度:" + userLocation.Longitude + " 纬度:" + userLocation.Latitude +" 地址: "+ userLocation.Addr);    
 });  
 	  map.addOverlay(marker);
     }
@@ -46,10 +46,10 @@ fetch('http://101.132.38.194:8080/queryCurrentLocation')
         response.json().then(function(json){
             if(json.Success){
                 json.Data.forEach(userLocation => {
-                console.log(userLocation.UserId,userLocation.UserName,userLocation.NickName,userLocation.Tel,userLocation.Radius,userLocation.Direction,userLocation.Latitude,userLocation.Longitude)
+                console.log(userLocation.UserId,userLocation.UserName,userLocation.NickName,userLocation.Tel,userLocation.Radius,userLocation.Direction,userLocation.Latitude,userLocation.Longitude,userLocation.Addr)
                     addMarker(userLocation)   
                 });
-                map.centerAndZoom(point, 10);
+                map.centerAndZoom(point, 15);
             }else{
                 alert(json.Msg)
             }
