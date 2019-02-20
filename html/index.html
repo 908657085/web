@@ -49,12 +49,11 @@ fetch('http://101.132.38.194:8080/queryCurrentLocation')
                 console.log(userLocation.UserId,userLocation.UserName,userLocation.NickName,userLocation.Tel,userLocation.Radius,userLocation.Direction,userLocation.Latitude,userLocation.Longitude)
                     addMarker(userLocation)   
                 });
+                map.centerAndZoom(point, 10);
             }else{
                 alert(json.Msg)
             }
         })
-}).then(function(){
-    map.centerAndZoom(point,15)
 })
 </script>  
 </body>  
