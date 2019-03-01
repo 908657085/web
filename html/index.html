@@ -36,7 +36,7 @@ function addMarker(userLocation){
     point=new BMap.Point(userLocation.Longitude,userLocation.Latitude)
 	  var marker = new BMap.Marker(point);
 marker.addEventListener("click", function(){    
-    alert("用户信息:" + userLocation.NickName + " 电话:" + userLocation.Tel + " 经度:" + userLocation.Longitude + " 纬度:" + userLocation.Latitude +" 地址: "+ userLocation.Addr);    
+    alert("用户信息:" + userLocation.NickName + " 电话:" + userLocation.Tel + " 经度:" + userLocation.Longitude + " 纬度:" + userLocation.Latitude +" 地址: "+ userLocation.Addr + "上传时间: " + userLocation.CreateTime);    
 });  
 	  map.addOverlay(marker);
     }
@@ -46,7 +46,7 @@ fetch('http://101.132.38.194:8080/queryCurrentLocation')
         response.json().then(function(json){
             if(json.Success){
                 json.Data.forEach(userLocation => {
-                console.log(userLocation.UserId,userLocation.UserName,userLocation.NickName,userLocation.Tel,userLocation.Radius,userLocation.Direction,userLocation.Latitude,userLocation.Longitude,userLocation.Addr)
+                    console.log(userLocation.UserId,userLocation.UserName,userLocation.NickName,userLocation.Tel,userLocation.Radius,userLocation.Direction,userLocation.Latitude,userLocation.Longitude,userLocation.Addr,userLocation.CreateTime)
                     addMarker(userLocation)   
                 });
                 map.centerAndZoom(point, 15);
